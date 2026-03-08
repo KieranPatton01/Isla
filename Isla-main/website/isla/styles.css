@@ -1,0 +1,275 @@
+/* --- CSS Reset & Variables --- */
+:root {
+    --bg-color: #f2dbdb;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --accent-color: #D4A5A5;   /* pink */
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --nav-height: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding-bottom: var(--nav-height); /* Space for bottom nav */
+}
+
+/* --- nav bar styling --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.5s ease;
+}
+
+.nav-link.active {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* --- Layout & Sections --- */
+.section {
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    opacity: 0; /* Hidden initially for fade-in animation */
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* --- Home Section --- */
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero-image-container {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Gallery Section --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.gallery-item {
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.caption {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    font-style: italic;
+}
+
+/* --- Music Section --- */
+.spotify-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 12px;
+}
+
+/* --- core memories styling --- */
+/* 1. Add spacing to the whole section container */
+.memories-section {
+    /* This ensures the title and boxes have a gap between them */
+    gap: 2rem; 
+    
+    /* If the content is tall, allow it to scroll naturally instead of forcing center */
+    justify-content: flex-start;
+    padding-top: 6rem; /* Extra space at top since we aren't centering vertically anymore */
+    height: auto; /* Allow section to grow if text is long */
+    min-height: 100vh;
+}
+
+/* 2. Update the card style to look good in a stack */
+.memory-card {
+    background: white;
+    padding: 2.5rem 2rem; /* Slightly smaller padding for mobile list */
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    
+    /* Optional: A subtle animation when she scrolls to each one */
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Make cards "lift" slightly if she taps/hovers */
+.memory-card:active, .memory-card:hover {
+    transform: translateY(-5px);
+}
+
+/* --- Action Button Styles --- */
+.action-btn {
+    display: inline-block; /* Allows padding/margin to work */
+    margin-top: 2rem;      /* Space between text and button */
+    padding: 14px 35px;    /* Nice big touch target */
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;   /* Makes it fully rounded (pill shape) */
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 20px rgba(212, 165, 165, 0.4); /* Soft glow matching accent */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Interaction Effects */
+.action-btn:hover {
+    box-shadow: 0 8px 25px rgba(212, 165, 165, 0.6);
+    transform: translateY(-2px);
+}
+
+.action-btn:active {
+    transform: scale(0.98); /* Slight shrink effect when tapped */
+    box-shadow: 0 2px 10px rgba(212, 165, 165, 0.4);
+}
+
+/* --- Balanced Button Group --- */
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 2.5rem;
+}
+
+/* Base style for both buttons to ensure they match */
+.action-btn.heartbeat, 
+.secondary-btn {
+    display: inline-flex;    /* Centering text inside */
+    justify-content: center;
+    align-items: center;
+    min-width: 100px;        /* Forces them to be the same width */
+    height: 50px;            /* Forces them to be the same height */
+    border-radius: 50px;
+    text-decoration: none;
+    margin-top: 0px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Specifics for the Yes Button */
+.action-btn.heartbeat {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 5px 20px rgba(212, 165, 165, 0.4);
+    animation: heartbeat 1.5s infinite;
+}
+
+/* Specifics for the No Button */
+.secondary-btn {
+    background-color: #f0f0f0; 
+    color: #888;
+    border: 1px solid #e0e0e0; /* Added a subtle border for depth */
+}
+
+.secondary-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* --- Heartbeat Animation Keyframes --- */
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.05);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
